@@ -36,7 +36,21 @@
   <div class="crumbs"><a href="index.html">Home</a> / Contact</div>
   <div class="hero-eyebrow">11 practices · Yorkshire</div>
   <h1>Find your <em>practice.</em></h1>
-  <p class="lede">Every practice in the Modality AWC partnership, with opening hours, phone numbers and addresses. Filter by area to find the one nearest you.</p>
+  <p class="lede">Every practice in the Modality AWC partnership, with opening hours, phone numbers and addresses. Enter your postcode to see how close each one is, or filter by area.</p>
+</section>
+
+<section class="postcode-finder">
+  <div class="postcode-card">
+    <div>
+      <div class="pf-eyebrow">Postcode finder</div>
+      <h2>How far is your <em>nearest practice?</em></h2>
+      <p>Type your UK postcode and we'll show you the distance to every Modality AWC practice — sorted with the closest first.</p>
+    </div>
+    <form class="pf-form" action="distance.html" method="get" onsubmit="return validatePostcode(this)">
+      <input type="text" name="postcode" placeholder="e.g. BD21 1LA" required autocomplete="postal-code" aria-label="Your postcode" />
+      <button type="submit">Find practices <span>→</span></button>
+    </form>
+  </div>
 </section>
 
 <section class="contact-section">
@@ -207,6 +221,18 @@
       });
     });
   });
+
+  function validatePostcode(form) {
+    const input = form.postcode;
+    const raw = input.value.trim().toUpperCase().replace(/\s+/g, ' ');
+    if (!/^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/.test(raw)) {
+      alert("Please enter a valid UK postcode (e.g. BD21 1LA).");
+      input.focus();
+      return false;
+    }
+    input.value = raw;
+    return true;
+  }
 </script>
 
 </body>

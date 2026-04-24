@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How close is your nearest practice? — Modality AWC</title>
+<meta name="description" content="See distance from your postcode to every Modality AWC GP practice." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=Manrope:wght@400..700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="emergency-strip">
+  <span><span class="dot"></span>In a life-threatening emergency call <a href="tel:999"><strong>999</strong></a></span>
+  <span>For urgent medical help call <a href="tel:111"><strong>NHS 111</strong></a> — free, 24/7</span>
+</div>
+
+<header class="site-header">
+  <a href="index.html" class="logo-mark">
+    <div class="badge">M</div>
+    <div>Modality AWC<small>Airedale · Wharfedale · Craven</small></div>
+  </a>
+  <nav class="nav-primary">
+    <a href="appointments.html">Appointments</a>
+    <a href="index.html#services">Prescriptions</a>
+    <a href="index.html#practices">Our practices</a>
+    <a href="index.html#news">News</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a href="appointments.html" class="header-cta">Book appointment <span class="arrow">→</span></a>
+</header>
+
+<div id="content">
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Finding your nearest practice…</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-mark"><div class="badge">M</div><div>Modality AWC <small>Airedale · Wharfedale · Craven</small></div></a>
+      <p>Eleven family practices delivering NHS general practice across rural Yorkshire. Part of the Modality Partnership.</p>
+    </div>
+    <div class="footer-col"><h5>Care</h5><ul><li><a href="appointments.html">Appointments</a></li><li><a href="#">Prescriptions</a></li><li><a href="#">Register with us</a></li><li><a href="#">Sick &amp; fit notes</a></li><li><a href="#">Test results</a></li></ul></div>
+    <div class="footer-col"><h5>Practice</h5><ul><li><a href="contact.html">Our practices</a></li><li><a href="index.html#news">News &amp; updates</a></li><li><a href="#">Patient Panel</a></li><li><a href="#">Feedback</a></li><li><a href="#">You &amp; your GP</a></li></ul></div>
+    <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy notice</a></li><li><a href="#">Accessibility</a></li><li><a href="#">Practice365 privacy</a></li><li><a href="#">Staff login</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Modality AWC · Part of the Modality Partnership</div>
+    <div class="social-links"><a href="#">f</a><a href="#">𝕏</a><a href="#">▶</a><a href="#">in</a></div>
+  </div>
+</footer>
+
+<script>
+  const PRACTICES = [
+    { name: "Cross Hills Group Practice", postcode: "BD20 7LG", address: "Holme Lane, Cross Hills, Keighley, BD20 7LG", phone: "01535 289290", hours: "Mon–Fri · 8am – 6pm", lat: 53.900245, lng: -1.990988 },
+    { name: "Farfield Group Practice", postcode: "BD21 2LD", address: "West Lane, Keighley, BD21 2LD", phone: "01535 289260", hours: "Mon–Fri · 8am – 6pm", lat: 53.866169, lng: -1.91364 },
+    { name: "Fisher Medical Practice", postcode: "BD23 1EU", address: "Millfields, Coach Street, Skipton, BD23 1EU", phone: "01756 630900", hours: "Mon–Fri · 8am – 6pm", lat: 53.961684, lng: -2.021412 },
+    { name: "Gargrave Surgery", postcode: "BD23 3RF", address: "Higherlands Close, Gargrave, Skipton, BD23 3RF", phone: "01756 630900", hours: "Mon & Thu · 8am – 1pm", lat: 53.984952, lng: -2.106976 },
+    { name: "Haworth Medical Practice", postcode: "BD22 8DH", address: "Heathcliffe Mews, Haworth, Keighley, BD22 8DH", phone: "01535 289220", hours: "Mon–Fri · 8am – 6pm", lat: 53.831336, lng: -1.954886 },
+    { name: "Holycroft Surgery", postcode: "BD21 1SA", address: "Oakworth Road, Keighley, BD21 1SA", phone: "01535 289260", hours: "Mon–Fri · 8am – 6pm", lat: 53.863842, lng: -1.914481 },
+    { name: "Kilmeny Group Medical Practice", postcode: "BD21 1LA", address: "50 Ashbourne Road, Ingrow, Keighley, BD21 1LA", phone: "01535 606415", hours: "Mon–Fri · 8am – 6pm", lat: 53.85573, lng: -1.921065 },
+    { name: "Long Lee Surgery", postcode: "BD21 4TT", address: "Long Lee Lane, Long Lee, Keighley, BD21 4TT", phone: "01535 609249", hours: "Mon–Fri · 8am – 6pm", lat: 53.858968, lng: -1.889374 },
+    { name: "Oakworth Medical Practice", postcode: "BD22 7HN", address: "3 Lidget Mill, Oakworth, Keighley, BD22 7HN", phone: "01535 289220", hours: "Mon & Wed · 8am – 1pm", lat: 53.846199, lng: -1.947013 },
+    { name: "Silsden Surgery", postcode: "BD20 0DG", address: "Elliott Street, Keighley, BD20 0DG", phone: "01535 288050", hours: "Mon–Fri · 8am – 6pm", lat: 53.911836, lng: -1.944144 },
+    { name: "Steeton Surgery", postcode: "BD20 6NU", address: "Steeton Health Centre, Chapel Road, Keighley, BD20 6NU", phone: "01535 288050", hours: "Mon–Thu · 8am – 12:30pm", lat: 53.894916, lng: -1.953586 }
+  ];
+
+  function haversineMiles(lat1, lon1, lat2, lon2) {
+    const toRad = d => d * Math.PI / 180;
+    const R = 3958.8;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+    return 2 * R * Math.asin(Math.sqrt(a));
+  }
+
+  function fmtDist(miles) {
+    if (miles < 0.1) return "< 0.1";
+    if (miles < 10) return miles.toFixed(1);
+    return Math.round(miles).toString();
+  }
+
+  function estDriveMins(miles) {
+    return Math.max(2, Math.round(miles / 28 * 60));
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const rawPostcode = (params.get("postcode") || "").trim().toUpperCase();
+
+  const content = document.getElementById("content");
+
+  function showError(title, body) {
+    content.innerHTML = `
+      <div class="error-state">
+        <h2>${escapeHtml(title)}</h2>
+        <p>${escapeHtml(body)}</p>
+        <a href="contact.html">← Try another postcode</a>
+      </div>`;
+  }
+
+  if (!rawPostcode) {
+    showError("No postcode provided", "Head back to the contact page and enter your postcode to see distances to every practice.");
+  } else {
+    const cleaned = rawPostcode.replace(/\s+/g, '');
+    fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleaned)}`)
+      .then(r => {
+        if (!r.ok) throw new Error("notfound");
+        return r.json();
+      })
+      .then(data => {
+        const { latitude, longitude, admin_district, region } = data.result;
+        const results = PRACTICES
+          .map(p => ({ ...p, miles: haversineMiles(latitude, longitude, p.lat, p.lng) }))
+          .sort((a, b) => a.miles - b.miles);
+
+        const closest = results[0];
+        const kilmenyRank = results.findIndex(p => p.postcode === "BD21 1LA") + 1;
+        const kilmeny = results.find(p => p.postcode === "BD21 1LA");
+
+        content.innerHTML = `
+          <section class="distance-hero">
+            <div class="crumbs"><a href="index.html">Home</a> / <a href="contact.html">Contact</a> / Results</div>
+            <div class="yourpostcode">📍 Results for ${escapeHtml(rawPostcode)} · ${escapeHtml(admin_district || region || 'UK')}</div>
+            <h1>Your closest practice is<br/><em>${escapeHtml(closest.name.replace(/ (Group )?(Practice|Surgery|Medical.*)$/,''))}.</em></h1>
+          </section>
+
+          <section class="closest-card">
+            <div class="closest-inner">
+              <div>
+                <div class="cl-eyebrow">Your nearest practice</div>
+                <h2>${escapeHtml(closest.name)}</h2>
+                <p class="cl-address">${escapeHtml(closest.address)}</p>
+                <p class="cl-hours">◷ ${escapeHtml(closest.hours)}</p>
+                <div class="cl-actions">
+                  <a href="tel:${closest.phone.replace(/\s/g,'')}" class="cl-btn primary">Call ${escapeHtml(closest.phone)}</a>
+                  <a href="appointments.html" class="cl-btn ghost">Book online →</a>
+                </div>
+              </div>
+              <div class="distance-big">
+                <div class="dist-num">${fmtDist(closest.miles)}<em> mi</em><small>${estDriveMins(closest.miles)} min drive · as the crow flies</small></div>
+                <div class="dist-details">
+                  <div><strong>${estDriveMins(closest.miles)}</strong>minutes by car</div>
+                  <div><strong>#${results.indexOf(closest)+1}</strong>of 11 practices</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="all-practices-list">
+            <h3>All practices, <em>nearest to furthest</em></h3>
+            <p>Kilmeny Group Medical Practice is ${kilmenyRank === 1 ? '<strong>your closest</strong>' : `ranked <strong>#${kilmenyRank}</strong> at ${fmtDist(kilmeny.miles)} miles`} from ${escapeHtml(rawPostcode)}.</p>
+            <div class="ranked-list">
+              ${results.map((p, i) => `
+                <div class="ranked-row ${p.postcode === 'BD21 1LA' ? 'highlighted' : ''}">
+                  <div class="rank ${i === 0 ? 'rank-1' : ''}">${String(i+1).padStart(2,'0')}</div>
+                  <div class="info">
+                    <div class="name">${escapeHtml(p.name)}${p.postcode === 'BD21 1LA' ? ' ★' : ''}</div>
+                    <div class="addr">${escapeHtml(p.address)}</div>
+                  </div>
+                  <div class="dist">${fmtDist(p.miles)}<small>mi</small></div>
+                  <a href="tel:${p.phone.replace(/\s/g,'')}" class="phone">${escapeHtml(p.phone)}</a>
+                </div>`).join('')}
+            </div>
+          </section>
+        `;
+      })
+      .catch(() => {
+        showError(`"${rawPostcode}" — postcode not found`, "We couldn't find that postcode. Double-check the format and try again.");
+      });
+  }
+</script>
+
+</body>
+</html>
